@@ -3,105 +3,156 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Circulación en Plaza Los Dominicos</title>
+  <title>Circulación: vías establecidas vs. informales</title>
   <style>
     :root { color-scheme: light dark; }
     body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 0; padding: 16px; line-height: 1.45; }
-    header, main { max-width: 980px; margin: 0 auto; }
+    header, main { max-width: 1080px; margin: 0 auto; }
     header { margin-bottom: 24px; }
-    .chart { margin: 20px 0 32px; }
+    h1 { margin: 0 0 6px; }
+    h2 { margin: 32px 0 8px; }
+    .sub { color:#666; margin: 0 0 16px; }
+    .chart { margin: 20px 0 28px; }
+    .grid { display: grid; gap: 20px; }
+    @media (min-width: 900px){ .grid.two { grid-template-columns: 1fr 1fr; } }
     .table-wrap { overflow-x: auto; border: 1px solid #e5e5e5; border-radius: 8px; }
     table { border-collapse: collapse; width: 100%; font-size: 14px; }
     th, td { padding: 10px 12px; border-bottom: 1px solid #eee; white-space: nowrap; }
     th { position: sticky; top: 0; background: #fafafa; }
     footer { margin: 40px 0 24px; font-size: 13px; color: #666; }
+    .note { font-size: 13px; color:#666; }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6"></script>
 </head>
 <body>
   <header>
     <h1>Circulación por rango etario</h1>
-    <p>Datos observados en Plaza Los Dominicos. Cada rango corresponde al promedio de los datos recopilados para ese grupo durante todos los días de observación.</p>
+    <p class="sub">Plaza Los Dominicos. Comparación entre vías establecidas e informales. Cada rango corresponde al promedio de los datos recopilados para ese grupo durante todos los días de observación.</p>
   </header>
 
   <main>
-    <section class="chart" id="chart-barras"></section>
-    <section class="chart" id="chart-apiladas"></section>
+    <section class="grid two">
+      <div>
+        <h2>Totales por rango — Vías establecidas</h2>
+        <div id="est-totales" class="chart"></div>
+      </div>
+      <div>
+        <h2>Totales por rango — Vías informales</h2>
+        <div id="inf-totales" class="chart"></div>
+      </div>
+    </section>
 
-    <h2>Tabla de datos</h2>
-    <div class="table-wrap">
-      <table id="tabla"></table>
-    </div>
+    <section class="grid two">
+      <div>
+        <h2>Distribución por momento — Establecidas</h2>
+        <div id="est-apiladas" class="chart"></div>
+      </div>
+      <div>
+        <h2>Distribución por momento — Informales</h2>
+        <div id="inf-apiladas" class="chart"></div>
+      </div>
+    </section>
+
+    <section class="grid two">
+      <div>
+        <h2>Tabla — Establecidas</h2>
+        <div class="table-wrap"><table id="tabla-est"></table></div>
+        <p class="note">Totales: 1259 | Mañana (promedio por rango): 110 | Tarde (promedio por rango): 310</p>
+      </div>
+      <div>
+        <h2>Tabla — Informales</h2>
+        <div class="table-wrap"><table id="tabla-inf"></table></div>
+        <p class="note">Totales: 60 | Mañana (promedio por rango): 10 | Tarde (promedio por rango): 10</p>
+      </div>
+    </section>
   </main>
 
-  <footer>
-    Hecho con Observable Plot. Visualización responsive para móvil y escritorio.
-  </footer>
+  <footer>Hecho con Observable Plot. Visualización responsive.</footer>
 
   <script>
-    // Datos embebidos (a partir de tu hoja)
-    const datos = [
-      { "Rango etario": "0-5 años",  "Jueves 10:00": 2,  "Jueves 14:30": 11, "Viernes 10:00": 4,  "Viernes 14:30": 9,   "Sábado 10:00": 0,  "Sábado 14:30": 4,  "Total": 30,  "%": 1.76, "Promedio rango": 6  },
-      { "Rango etario": "6-18 años", "Jueves 10:00": 3,  "Jueves 14:30": 22, "Viernes 10:00": 4,  "Viernes 14:30": 36,  "Sábado 10:00": 0,  "Sábado 14:30": 0,  "Total": 65,  "%": 3.80, "Promedio rango": 13 },
-      { "Rango etario": "19-30 años","Jueves 10:00": 40, "Jueves 14:30": 108,"Viernes 10:00": 35, "Viernes 14:30": 223, "Sábado 10:00": 20, "Sábado 14:30": 0,  "Total": 426, "%": 24.93,"Promedio rango": 85 },
-      { "Rango etario": "31-60 años","Jueves 10:00": 25, "Jueves 14:30": 132,"Viernes 10:00": 0,  "Viernes 14:30": 173, "Sábado 10:00": 30, "Sábado 14:30": 51, "Total": 411, "%": 24.05,"Promedio rango": 82 },
-      { "Rango etario": "61-90 años","Jueves 10:00": 39, "Jueves 14:30": 0,  "Viernes 10:00": 28, "Viernes 14:30": 80,  "Sábado 10:00": 42, "Sábado 14:30": 0,  "Total": 189, "%": 11.06,"Promedio rango": 47 }
+    // Datos embebidos (limpios a partir de tu CSV)
+    const momentos = [
+      "Jueves 07-08 10:00 (mañana)",
+      "Jueves 07-08 14:30 (tarde)",
+      "Viernes 08-08 10:00 (mañana)",
+      "Viernes 08-08 14:30 (tarde)",
+      "Sábado 09-08 10:00 (mañana)",
+      "Sábado 09-08 14:30 (tarde)"
     ];
 
-    // Utilidades
-    const keysMomentos = ["Jueves 10:00","Jueves 14:30","Viernes 10:00","Viernes 14:30","Sábado 10:00","Sábado 14:30"];
+    const establecidas = [
+      { "Rango etario":"0-5 años",  "Jueves 07-08 10:00 (mañana)":2,  "Jueves 07-08 14:30 (tarde)":11, "Viernes 08-08 10:00 (mañana)":4,  "Viernes 08-08 14:30 (tarde)":9,  "Sábado 09-08 10:00 (mañana)":10, "Sábado 09-08 14:30 (tarde)":4,  "Total":40,  "%":"3.18%", "Promedio rango":7, "Promedio mañana por rango etario":5, "Promedio tarde por rango etario":8 },
+      { "Rango etario":"6-18 años", "Jueves 07-08 10:00 (mañana)":3,  "Jueves 07-08 14:30 (tarde)":22, "Viernes 08-08 10:00 (mañana)":4,  "Viernes 08-08 14:30 (tarde)":36, "Sábado 09-08 10:00 (mañana)":21, "Sábado 09-08 14:30 (tarde)":0,  "Total":86,  "%":"6.83%", "Promedio rango":14, "Promedio mañana por rango etario":9, "Promedio tarde por rango etario":19 },
+      { "Rango etario":"19-30 años","Jueves 07-08 10:00 (mañana)":41, "Jueves 07-08 14:30 (tarde)":108,"Viernes 08-08 10:00 (mañana)":35, "Viernes 08-08 14:30 (tarde)":223,"Sábado 09-08 10:00 (mañana)":16, "Sábado 09-08 14:30 (tarde)":20, "Total":443, "%":"35.19%","Promedio rango":74, "Promedio mañana por rango etario":31, "Promedio tarde por rango etario":117 },
+      { "Rango etario":"31-60 años","Jueves 07-08 10:00 (mañana)":25, "Jueves 07-08 14:30 (tarde)":132,"Viernes 08-08 10:00 (mañana)":51, "Viernes 08-08 14:30 (tarde)":173,"Sábado 09-08 10:00 (mañana)":28, "Sábado 09-08 14:30 (tarde)":30, "Total":439, "%":"34.87%","Promedio rango":73, "Promedio mañana por rango etario":35, "Promedio tarde por rango etario":112 },
+      { "Rango etario":"61-90 años","Jueves 07-08 10:00 (mañana)":30, "Jueves 07-08 14:30 (tarde)":39, "Viernes 08-08 10:00 (mañana)":28, "Viernes 08-08 14:30 (tarde)":80, "Sábado 09-08 10:00 (mañana)":32, "Sábado 09-08 14:30 (tarde)":42, "Total":251, "%":"19.94%","Promedio rango":42, "Promedio mañana por rango etario":30, "Promedio tarde por rango etario":54 }
+    ];
 
-    // 1) Barras horizontales por Total
-    (function barrasTotales(){
+    const informales = [
+      { "Rango etario":"0-5 años",  "Jueves 07-08 10:00 (mañana)":0, "Jueves 07-08 14:30 (tarde)":0, "Viernes 08-08 10:00 (mañana)":0, "Viernes 08-08 14:30 (tarde)":0, "Sábado 09-08 10:00 (mañana)":2, "Sábado 09-08 14:30 (tarde)":3, "Total":5,  "%":"8.33%",  "Promedio rango":1, "Promedio mañana por rango etario":1, "Promedio tarde por rango etario":1 },
+      { "Rango etario":"6-18 años", "Jueves 07-08 10:00 (mañana)":0, "Jueves 07-08 14:30 (tarde)":1, "Viernes 08-08 10:00 (mañana)":0, "Viernes 08-08 14:30 (tarde)":4, "Sábado 09-08 10:00 (mañana)":0, "Sábado 09-08 14:30 (tarde)":5, "Total":10, "%":"16.67%", "Promedio rango":2, "Promedio mañana por rango etario":0, "Promedio tarde por rango etario":3 },
+      { "Rango etario":"19-30 años","Jueves 07-08 10:00 (mañana)":3, "Jueves 07-08 14:30 (tarde)":2, "Viernes 08-08 10:00 (mañana)":2, "Viernes 08-08 14:30 (tarde)":4, "Sábado 09-08 10:00 (mañana)":1, "Sábado 09-08 14:30 (tarde)":1, "Total":13, "%":"21.67%", "Promedio rango":2, "Promedio mañana por rango etario":2, "Promedio tarde por rango etario":2 },
+      { "Rango etario":"31-60 años","Jueves 07-08 10:00 (mañana)":6, "Jueves 07-08 14:30 (tarde)":3, "Viernes 08-08 10:00 (mañana)":2, "Viernes 08-08 14:30 (tarde)":1, "Sábado 09-08 10:00 (mañana)":9, "Sábado 09-08 14:30 (tarde)":2, "Total":23, "%":"38.33%", "Promedio rango":4, "Promedio mañana por rango etario":6, "Promedio tarde por rango etario":2 },
+      { "Rango etario":"61-90 años","Jueves 07-08 10:00 (mañana)":0, "Jueves 07-08 14:30 (tarde)":1, "Viernes 08-08 10:00 (mañana)":3, "Viernes 08-08 14:30 (tarde)":4, "Sábado 09-08 10:00 (mañana)":0, "Sábado 09-08 14:30 (tarde)":1, "Total":9, "%":"15.00%", "Promedio rango":2, "Promedio mañana por rango etario":1, "Promedio tarde por rango etario":2 }
+    ];
+
+    const palette = ["#b7e4c7","#95d5b2","#74c69d","#52b788","#2d6a4f"];
+
+    // Util: crear tabla
+    function renderTable(el, data) {
+      const cols = Object.keys(data[0]);
+      el.innerHTML = `
+        <thead><tr>${cols.map(c=>`<th>${c}</th>`).join("")}</tr></thead>
+        <tbody>${data.map(r=>`<tr>${cols.map(c=>`<td>${r[c]}</td>`).join("")}</tr>`).join("")}</tbody>
+      `;
+    }
+
+    // Barras horizontales por Total
+    function barrasTotales(data, mountId){
       const plot = Plot.plot({
         height: 360,
-        marginLeft: 120,
+        marginLeft: 140,
         x: { label: "Personas" },
         y: { label: null, tickSize: 0 },
-        color: { legend: false, range: ["#b7e4c7","#95d5b2","#74c69d","#52b788","#2d6a4f"] },
+        color: { legend: false, range: palette },
         marks: [
-          Plot.barX(datos, { x: "Total", y: "Rango etario", fill: "Rango etario", inset: 2, tip: true }),
-          Plot.text(datos, { x: d => d.Total + 6, y: "Rango etario", text: d => d.Total, anchor: "left" })
+          Plot.barX(data, { x: "Total", y: "Rango etario", fill: "Rango etario", inset: 2, tip: true }),
+          Plot.text(data, { x: d => d.Total + 6, y: "Rango etario", text: d => d.Total, anchor: "left" })
         ]
       });
-      document.getElementById("chart-barras").append(plot);
-    })();
+      document.getElementById(mountId).append(plot);
+    }
 
-    // 2) Barras apiladas por momento del día
-    (function barrasApiladas(){
+    // Barras apiladas por momento
+    function barrasApiladas(data, mountId){
       const tidy = [];
-      for (const row of datos) {
-        for (const k of keysMomentos) {
+      for (const row of data) {
+        for (const k of momentos) {
           const v = row[k];
-          if (v != null && v !== "" && !isNaN(v)) {
-            tidy.push({ "Rango etario": row["Rango etario"], "Momento": k, "Valor": +v });
-          }
+          if (v != null && v !== "" && !isNaN(v)) tidy.push({ "Rango etario": row["Rango etario"], "Momento": k, "Valor": +v });
         }
       }
       const plot = Plot.plot({
         height: 440,
-        marginBottom: 80,
+        marginBottom: 90,
         y: { label: "Personas" },
-        x: { label: null, tickRotate: 40 },
-        color: { legend: true, range: ["#b7e4c7","#95d5b2","#74c69d","#52b788","#2d6a4f"] },
+        x: { label: null, tickRotate: 38 },
+        color: { legend: true, range: palette },
         marks: [
           Plot.barY(tidy, Plot.stackY({ x: "Momento", y: "Valor", fill: "Rango etario", tip: true }))
         ]
       });
-      document.getElementById("chart-apiladas").append(plot);
-    })();
+      document.getElementById(mountId).append(plot);
+    }
 
-    // 3) Tabla
-    (function renderTable(){
-      const el = document.getElementById("tabla");
-      const cols = Object.keys(datos[0]);
-      el.innerHTML = `
-        <thead><tr>${cols.map(c=>`<th>${c}</th>`).join("")}</tr></thead>
-        <tbody>
-          ${datos.map(r=>`<tr>${cols.map(c=>`<td>${r[c]}</td>`).join("")}</tr>`).join("")}
-        </tbody>
-      `;
-    })();
+    // Render
+    barrasTotales(establecidas, "est-totales");
+    barrasTotales(informales, "inf-totales");
+    barrasApiladas(establecidas, "est-apiladas");
+    barrasApiladas(informales, "inf-apiladas");
+    renderTable(document.getElementById("tabla-est"), establecidas);
+    renderTable(document.getElementById("tabla-inf"), informales);
   </script>
 </body>
 </html>
+
