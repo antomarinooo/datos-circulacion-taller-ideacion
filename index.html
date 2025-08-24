@@ -4,10 +4,190 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Circulación plaza Los Dominicos</title>
-  <meta name="description" content="Tabla desde CSV en GitHub Pages.">
+  <meta name="description" content="Visualizaciones y tablas de circulación en Plaza Los Dominicos, optimizadas para móvil.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    :root { color-scheme: light; }
+
+    html, body { height: 100%; }
+
+    body {
+      font-family: "DM Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.45;
+      background: #ffffff;
+      color: #111827;
+    }
+
+    /* Contenedor principal */
+    header, main, footer {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: clamp(12px, 3vw, 24px);
+    }
+
+    /* Títulos y subtítulos */
+    header h1 {
+      margin: 0 0 6px;
+      line-height: 1.1;
+      font-size: clamp(22px, 4vw, 32px);
+      color: #0f172a;
+    }
+
+    header p {
+      margin: 0;
+      color: #838383;
+      font-size: clamp(13px, 2.4vw, 15px);
+    }
+
+    /* Tarjetas */
+    .card {
+      background: #f7f7f8;
+      border: 1px solid #ececec;
+      border-radius: 10px;
+      padding: clamp(12px, 3vw, 20px);
+      margin-bottom: clamp(12px, 3vw, 20px);
+    }
+
+    .card-subtitle {
+      margin: 0 0 10px;
+      font-weight: 500;
+      color: #444;
+      font-size: clamp(13px, 2.6vw, 15px);
+    }
+
+    .descripcion-grafico {
+      font-size: 0.95em;
+      color: #757575;
+    }
+
+    /* Figura / imagen */
+    .figure {
+      display: grid;
+      gap: 12px;
+    }
+
+    .figure img,
+    .figure object,
+    .figure svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+      background: #ffffff;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.03);
+    }
+
+    /* Controles y botones */
+    .controls {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .btn {
+      appearance: none;
+      border: 1px solid #e5e7eb;
+      background: #ffffff;
+      color: #111827;
+      border-radius: 6px;
+      padding: 8px 10px;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 13px;
+      transition: background-color .15s ease, border-color .15s ease, box-shadow .15s ease;
+    }
+
+    .btn:hover {
+      background: #f3f4f6;
+      border-color: #d1d5db;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.04);
+    }
+
+    .btn:focus-visible {
+      outline: 2px solid #3b82f6;
+      outline-offset: 2px;
+    }
+
+    .meta {
+      align-self: center;
+      font-size: 12px;
+      color: #6b7280;
+    }
+
+    footer {
+      font-size: 13px;
+      color: #465065;
+    }
+
+    /* Tabla estática optimizada para móvil */
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;             /* permite desplazamiento horizontal en pantallas pequeñas */
+      -webkit-overflow-scrolling: touch;
+      border-radius: 8px;
+    }
+
+    .table {
+      border-collapse: collapse;
+      width: 100%;
+      min-width: 720px;             /* asegura layout estable; ajusta si deseas más compacto */
+      font-size: 13px;              /* tamaño base reducido */
+    }
+
+    .table th,
+    .table td {
+      border: 1px solid #e5e7eb;
+      padding: 6px 8px;             /* celdas más compactas */
+      text-align: left;
+      white-space: nowrap;          /* evita saltos forzados; combinado con scroll horizontal */
+    }
+
+    .table th {
+      background: #f3f4f6;
+      font-weight: 500;             /* más liviano que 600 para cabeceras */
+    }
+
+    .table-title {
+      text-align: left;
+      padding: 8px;
+      border: 0;
+      background: #f8fafc;
+      font-size: 0.95rem;
+      font-weight: 400;             /* títulos de bloque SIN negrita */
+      color: #374151;
+    }
+
+    /* Estética para columnas numéricas (alineación a la derecha) */
+    .num { text-align: right; font-variant-numeric: tabular-nums; }
+
+    /* Responsive: en móviles, aún más compacto */
+    @media (max-width: 640px) {
+      .table { font-size: 12px; min-width: 680px; }
+      .table th, .table td { padding: 5px 6px; }
+      header, main, footer { padding: 14px; }
+      .btn { padding: 7px 9px; font-size: 12.5px; }
+    }
+
+    /* Safe area para iPhone con notch */
+    @supports (padding: max(0px)) {
+      body { padding-bottom: env(safe-area-inset-bottom); }
+      header, main, footer {
+        padding-left: max(14px, env(safe-area-inset-left));
+        padding-right: max(14px, env(safe-area-inset-right));
+      }
+    }
+
+    /* Mantener light aunque el sistema esté en dark */
+    @media (prefers-color-scheme: dark) {
+      :root { color-scheme: light; }
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -20,11 +200,9 @@
       <p class="card-subtitle descripcion-grafico">
         Este gráfico muestra la distribución de circulación según diferentes rangos etarios y franjas horarias en la plaza.
       </p>
-
       <div class="figure">
         <img src="heatmap_circulacion.svg" alt="Heatmap de circulación por rango etario y momento" loading="eager" fetchpriority="high">
       </div>
-
       <div class="controls">
         <a class="btn" href="heatmap_circulacion.svg" download>Descargar SVG</a>
         <a class="btn" href="heatmap_circulacion.svg" target="_blank" rel="noopener">Abrir en nueva pestaña</a>
@@ -33,77 +211,94 @@
       </div>
     </section>
 
-    <!-- Contenedor para la tabla construida desde el CSV -->
     <section class="card">
-      <h2 style="margin-top:0">Tabla de datos (CSV)</h2>
-      <div id="csv-table">Cargando datos…</div>
+      <h2 style="margin:0 0 8px; font-size: clamp(16px, 2.8vw, 18px); font-weight:600; color:#111;">Tablas de datos</h2>
+
+      <div class="table-wrap">
+        <table class="table">
+          <tr><th class="table-title" colspan="13">Circulación por vías establecidas</th></tr>
+          <tr>
+            <th>Rango etario</th>
+            <th>Jue 07-08 10:00</th>
+            <th>Jue 07-08 14:30</th>
+            <th>Vie 08-08 10:00</th>
+            <th>Vie 08-08 14:30</th>
+            <th>Sáb 09-08 10:00</th>
+            <th>Sáb 09-08 14:30</th>
+            <th class="num">Total</th>
+            <th class="num">%</th>
+            <th class="num">Prom. rango</th>
+            <th></th>
+            <th class="num">Prom. mañana</th>
+            <th class="num">Prom. tarde</th>
+          </tr>
+          <tr><td>0-5 años</td><td class="num">2</td><td class="num">11</td><td class="num">4</td><td class="num">9</td><td class="num">10</td><td class="num">4</td><td class="num">40</td><td class="num">3.18%</td><td class="num">7</td><td></td><td class="num">5</td><td class="num">8</td></tr>
+          <tr><td>6-18 años</td><td class="num">3</td><td class="num">22</td><td class="num">4</td><td class="num">36</td><td class="num">21</td><td class="num">0</td><td class="num">86</td><td class="num">6.83%</td><td class="num">14</td><td></td><td class="num">9</td><td class="num">19</td></tr>
+          <tr><td>19-30 años</td><td class="num">41</td><td class="num">108</td><td class="num">35</td><td class="num">223</td><td class="num">16</td><td class="num">20</td><td class="num">443</td><td class="num">35.19%</td><td class="num">74</td><td></td><td class="num">31</td><td class="num">117</td></tr>
+          <tr><td>31-60 años</td><td class="num">25</td><td class="num">132</td><td class="num">51</td><td class="num">173</td><td class="num">28</td><td class="num">30</td><td class="num">439</td><td class="num">34.87%</td><td class="num">73</td><td></td><td class="num">35</td><td class="num">112</td></tr>
+          <tr><td>61-90 años</td><td class="num">30</td><td class="num">39</td><td class="num">28</td><td class="num">80</td><td class="num">32</td><td class="num">42</td><td class="num">251</td><td class="num">19.94%</td><td class="num">42</td><td></td><td class="num">30</td><td class="num">54</td></tr>
+          <tr><td>Promedio día</td><td class="num">20</td><td class="num">62</td><td class="num">24</td><td class="num">104</td><td class="num">21</td><td class="num">19</td><td class="num"></td><td class="num"></td><td class="num"></td><td></td><td class="num"></td><td class="num"></td></tr>
+        </table>
+      </div>
+
+      <div class="table-wrap" style="margin-top:12px">
+        <table class="table">
+          <tr><th class="table-title" colspan="13">Circulación por vías informales</th></tr>
+          <tr>
+            <th>Rango etario</th>
+            <th>Jue 07-08 10:00</th>
+            <th>Jue 07-08 14:30</th>
+            <th>Vie 08-08 10:00</th>
+            <th>Vie 08-08 14:30</th>
+            <th>Sáb 09-08 10:00</th>
+            <th>Sáb 09-08 14:30</th>
+            <th class="num">Total</th>
+            <th class="num">%</th>
+            <th class="num">Prom. rango</th>
+            <th></th>
+            <th class="num">Prom. mañana</th>
+            <th class="num">Prom. tarde</th>
+          </tr>
+          <tr><td>0-5 años</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">2</td><td class="num">3</td><td class="num">5</td><td class="num">8.33%</td><td class="num">1</td><td></td><td class="num">1</td><td class="num">1</td></tr>
+          <tr><td>6-18 años</td><td class="num">0</td><td class="num">1</td><td class="num">0</td><td class="num">4</td><td class="num">0</td><td class="num">5</td><td class="num">10</td><td class="num">16.67%</td><td class="num">2</td><td></td><td class="num">0</td><td class="num">3</td></tr>
+          <tr><td>19-30 años</td><td class="num">3</td><td class="num">2</td><td class="num">2</td><td class="num">4</td><td class="num">1</td><td class="num">1</td><td class="num">13</td><td class="num">21.67%</td><td class="num">2</td><td></td><td class="num">2</td><td class="num">2</td></tr>
+          <tr><td>31-60 años</td><td class="num">6</td><td class="num">3</td><td class="num">2</td><td class="num">1</td><td class="num">9</td><td class="num">2</td><td class="num">23</td><td class="num">38.33%</td><td class="num">4</td><td></td><td class="num">6</td><td class="num">2</td></tr>
+          <tr><td>61-90 años</td><td class="num">0</td><td class="num">1</td><td class="num">3</td><td class="num">4</td><td class="num">0</td><td class="num">1</td><td class="num">9</td><td class="num">15.00%</td><td class="num">2</td><td></td><td class="num">1</td><td class="num">2</td></tr>
+          <tr><td>Promedio día</td><td class="num">2</td><td class="num">1</td><td class="num">1</td><td class="num">3</td><td class="num">2</td><td class="num">2</td><td class="num"></td><td class="num"></td><td class="num"></td><td></td><td class="num"></td><td class="num"></td></tr>
+        </table>
+      </div>
+
+      <div class="table-wrap" style="margin-top:12px">
+        <table class="table">
+          <tr><th class="table-title" colspan="13">Total en ambas vías</th></tr>
+          <tr>
+            <th>Rango etario</th>
+            <th>Jue 07-08 10:00</th>
+            <th>Jue 07-08 14:30</th>
+            <th>Vie 08-08 10:00</th>
+            <th>Vie 08-08 14:30</th>
+            <th>Sáb 09-08 10:00</th>
+            <th>Sáb 09-08 14:30</th>
+            <th class="num">Total</th>
+            <th class="num">%</th>
+            <th class="num">Prom. rango</th>
+            <th></th>
+            <th class="num">Prom. mañana</th>
+            <th class="num">Prom. tarde</th>
+          </tr>
+          <tr><td>0-5 años</td><td class="num">2</td><td class="num">11</td><td class="num">4</td><td class="num">9</td><td class="num">12</td><td class="num">7</td><td class="num">45</td><td class="num">3.41%</td><td class="num">8</td><td></td><td class="num">6</td><td class="num">9</td></tr>
+          <tr><td>6-18 años</td><td class="num">3</td><td class="num">23</td><td class="num">4</td><td class="num">40</td><td class="num">21</td><td class="num">5</td><td class="num">96</td><td class="num">7.28%</td><td class="num">16</td><td></td><td class="num">9</td><td class="num">23</td></tr>
+          <tr><td>19-30 años</td><td class="num">44</td><td class="num">110</td><td class="num">37</td><td class="num">227</td><td class="num">17</td><td class="num">21</td><td class="num">456</td><td class="num">34.57%</td><td class="num">76</td><td></td><td class="num">33</td><td class="num">119</td></tr>
+          <tr><td>31-60 años</td><td class="num">31</td><td class="num">135</td><td class="num">53</td><td class="num">174</td><td class="num">37</td><td class="num">32</td><td class="num">462</td><td class="num">35.03%</td><td class="num">77</td><td></td><td class="num">40</td><td class="num">114</td></tr>
+          <tr><td>61-90 años</td><td class="num">30</td><td class="num">40</td><td class="num">31</td><td class="num">84</td><td class="num">32</td><td class="num">43</td><td class="num">260</td><td class="num">19.71%</td><td class="num">43</td><td></td><td class="num">31</td><td class="num">56</td></tr>
+          <tr><td>Promedio día</td><td class="num">22</td><td class="num">64</td><td class="num">26</td><td class="num">107</td><td class="num">24</td><td class="num">22</td><td class="num"></td><td class="num"></td><td class="num"></td><td></td><td class="num"></td><td class="num"></td></tr>
+        </table>
+      </div>
     </section>
   </main>
 
   <footer>
     Lunes 25 de Agosto de 2025 | Taller de ideación y creatividad | Sección 1 | Publicado con GitHub Pages.
   </footer>
-
-  <!-- Script para leer y mostrar el CSV -->
-  <script>
-    const CSV_URL = 'Datos-circulacion-plaza-los-dominicos-Sheet1-2.csv';
-
-    function parseCSV(text) {
-      const rows = [];
-      let cur = '', inQuotes = false, row = [];
-      for (let i = 0; i < text.length; i++) {
-        const c = text[i], n = text[i+1];
-        if (c === '"' && inQuotes && n === '"') { cur += '"'; i++; continue; }
-        if (c === '"') { inQuotes = !inQuotes; continue; }
-        if (c === ',' && !inQuotes) { row.push(cur); cur = ''; continue; }
-        if ((c === '\\n' || c === '\\r') && !inQuotes) {
-          if (cur.length || row.length) { row.push(cur); rows.push(row); }
-          cur = ''; row = [];
-          if (c === '\\r' && n === '\\n') i++;
-          continue;
-        }
-        cur += c;
-      }
-      if (cur.length || row.length) { row.push(cur); rows.push(row); }
-      return rows;
-    }
-
-    function removeEmptyRows(rows) {
-      return rows.filter(r => r.some(cell => String(cell).trim() !== ''));
-    }
-
-    function toTable(rows) {
-      if (!rows.length) return '<p>No hay datos.</p>';
-      const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-      let html = '<table class="table">';
-      // Dibuja cada fila, detectando filas-título (una sola celda no vacía)
-      for (const r of rows) {
-        const nonEmpty = r.filter(c => c.trim() !== '');
-        const onlyTitle = nonEmpty.length === 1 && r.join('').trim().length > 0;
-        if (onlyTitle) {
-          html += `<tr><th class="table-title" colspan="100">${esc(nonEmpty[0])}</th></tr>`;
-          continue;
-        }
-        html += '<tr>';
-        for (const c of r) {
-          html += `<td>${esc(c)}</td>`;
-        }
-        html += '</tr>';
-      }
-      html += '</table>';
-      return html;
-    }
-
-    fetch(CSV_URL)
-      .then(r => { if (!r.ok) throw new Error('No se pudo cargar el CSV'); return r.text(); })
-      .then(text => {
-        let rows = parseCSV(text);
-        rows = removeEmptyRows(rows);
-        document.getElementById('csv-table').innerHTML = toTable(rows);
-      })
-      .catch(err => {
-        document.getElementById('csv-table').textContent = 'Error cargando CSV: ' + err.message;
-      });
-  </script>
 </body>
 </html>
