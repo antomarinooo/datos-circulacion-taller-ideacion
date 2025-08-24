@@ -1,0 +1,163 @@
+:root { color-scheme: light; }
+
+html, body { height: 100%; }
+
+body {
+  font-family: "DM Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+  background: #ffffff;
+  color: #111827;
+}
+
+/* Contenedor principal */
+header, main, footer {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: clamp(16px, 3vw, 32px);
+}
+
+/* Títulos y subtítulos */
+header h1 {
+  margin: 0 0 8px;
+  line-height: 1.1;
+  font-size: clamp(32px, 4vw, 32px);
+  color: #0f172a;
+}
+
+header p {
+  margin: 0;
+  color: #838383;
+}
+
+/* Tarjetas */
+.card {
+  background: #f5f5f595;
+  border: 1px solid #ececec;
+  border-radius: 8px;
+  padding: clamp(16px, 3vw, 28px);
+}
+
+.card-subtitle {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-weight: 500;
+  margin-left: 0;
+}
+
+.descripcion-grafico {
+  font-size: 0.95em;
+  color: #757575;
+}
+
+/* Figura / imagen */
+.figure {
+  display: grid;
+  gap: 14px;
+}
+
+.figure img,
+.figure object,
+.figure svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.03);
+}
+
+/* Controles y botones */
+.controls {
+  display: flex;
+  gap: 2px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.btn {
+  appearance: none;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  color: #111827;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-weight: 200;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background-color .15s ease, border-color .15s ease, box-shadow .15s ease;
+}
+
+.btn:hover {
+  background: #f3f4f6;
+  border-color: #d1d5db;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.04);
+}
+
+.btn:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Meta y footer */
+.meta {
+  align-self: center;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+footer {
+  font-size: 13px;
+  color: #465065;
+}
+
+/* Tabla generada desde CSV */
+.table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 12px;
+}
+
+.table th,
+.table td {
+  border: 1px solid #e5e7eb;
+  padding: 8px;
+  text-align: left;
+}
+
+.table th {
+  background: #f1f5f9;
+  font-weight: 600;
+}
+
+.table-title {
+  text-align: left;
+  padding: 10px 8px;
+  border: 0;
+  background: #f8fafc;
+  font-size: 1rem;
+}
+
+/* Safe area para iPhone con notch */
+@supports (padding: max(0px)) {
+  body { padding-bottom: env(safe-area-inset-bottom); }
+  header, main, footer {
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
+  }
+}
+
+/* Mantener light aunque el sistema esté en dark */
+@media (prefers-color-scheme: dark) {
+  :root { color-scheme: light; }
+}
+
+/* Ajuste de espacio entre h1 y p */
+header h1 { margin-bottom: 0.1px; }
+header p { margin-top: 0; }
+
+.card {
+  margin-bottom: 20px; /* separa las cards entre sí */
+}

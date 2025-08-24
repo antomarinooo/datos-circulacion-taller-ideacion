@@ -3,122 +3,40 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Heatmap de circulación | Plaza Los Dominicos</title>
-  <meta name="description" content="Visualización SVG responsive del heatmap de circulación peatonal por rango etario y momento.">
+  <title>Circulación plaza Los Dominicos</title>
+  <meta name="description" content="Tabla desde CSV en GitHub Pages.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-  <style>
-    /* Forzar light mode consistente en GitHub Pages */
-    :root { color-scheme: light; }
-    html, body { height: 100%; }
-    body {
-      font-family: "DM Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-      margin: 0; padding: 0; line-height: 1.5;
-      background: #ffffff; color: #111827; /* blanco + gris muy oscuro */
-    }
-    header, main, footer { max-width: 1100px; margin: 0 auto; padding: clamp(16px, 3vw, 32px); }
-    header h1 { margin: 0 0 8px; font-size: clamp(22px, 4vw, 32px); color: #0f172a; }
-    header p { margin: 0; color: #6b7280; }
-
-    .card {
-      background: #f8fafc; /* leve contraste en light */
-      border: 1px solid #e5e7eb;
-      border-radius: 16px;
-      padding: clamp(16px, 3vw, 28px);
-    }
-
-    .figure {
-      display: grid; gap: 14px;
-    }
-    .figure img, .figure object, .figure svg {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 12px;
-      background: #ffffff;
-      box-shadow: 0 1px 0 rgba(0,0,0,0.03);
-    }
-
-    /* Controles con más aire y separación respecto del gráfico */
-    .controls {
-      display: flex;
-      gap: 12px;            /* más espacio entre botones */
-      flex-wrap: wrap;
-      margin-top: 20px;     /* más espacio del gráfico hacia los botones */
-    }
-
-    .btn {
-      appearance: none;
-      border: 1px solid #e5e7eb;
-      background: #ffffff;
-      color: #111827;
-      border-radius: 10px;
-      padding: 12px 16px;   /* botones un poco más grandes */
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: none;
-      font-size: 14px;
-      transition: background-color .15s ease, border-color .15s ease, box-shadow .15s ease;
-    }
-    .btn:hover {
-      background: #f3f4f6;
-      border-color: #d1d5db;
-      box-shadow: 0 1px 0 rgba(0,0,0,0.04);
-    }
-    .btn:focus-visible {
-      outline: 2px solid #3b82f6;
-      outline-offset: 2px;
-    }
-
-    .meta {
-      align-self: center;
-      font-size: 13px;
-      color: #6b7280;
-    }
-
-    footer {
-      font-size: 13px;
-      color: #6b7280;
-    }
-
-    /* Safe area para iPhone con notch */
-    @supports (padding: max(0px)) {
-      body { padding-bottom: env(safe-area-inset-bottom); }
-      header, main, footer {
-        padding-left: max(16px, env(safe-area-inset-left));
-        padding-right: max(16px, env(safe-area-inset-right));
-      }
-    }
-
-    /* Preferencias del sistema: mantén siempre claro, ignorando dark */
-    @media (prefers-color-scheme: dark) {
-      :root { color-scheme: light; }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header>
-    <h1>Heatmap de circulación</h1>
+    <h1>Gráficos de circulación plaza Los Dominicos</h1>
     <p>Plaza Los Dominicos · Rango etario × momento del día · SVG responsive</p>
   </header>
 
   <main>
     <section class="card">
+      <p class="card-subtitle descripcion-grafico">
+        Este gráfico muestra la distribución de circulación según diferentes rangos etarios y franjas horarias en la plaza.
+      </p>
+
       <div class="figure">
-        <!-- Carga del SVG -->
-        <!-- Opción A (recomendada): <img> es veloz y responsive -->
         <img src="heatmap_circulacion.svg" alt="Heatmap de circulación por rango etario y momento" loading="eager" fetchpriority="high">
-        <!-- Opción B (si quieres interactividad dentro del SVG): descomenta object -->
-        <!-- <object data="heatmap_circulacion.svg" type="image/svg+xml" aria-label="Heatmap" width="100%"></object> -->
       </div>
 
       <div class="controls">
         <a class="btn" href="heatmap_circulacion.svg" download>Descargar SVG</a>
         <a class="btn" href="heatmap_circulacion.svg" target="_blank" rel="noopener">Abrir en nueva pestaña</a>
-        <button class="btn" id="fit">Ajustar a ancho</button>
-        <button class="btn" id="zoom">Zoom 120%</button>
+        <a class="btn" href="lamina-certamen-taller-ideacion.pdf" target="_blank" rel="noopener">Abrir lámina principal (PDF)</a>
         <span class="meta" id="status" aria-live="polite"></span>
       </div>
+    </section>
+
+    <!-- Contenedor para la tabla construida desde el CSV -->
+    <section class="card">
+      <h2 style="margin-top:0">Tabla de datos (CSV)</h2>
+      <div id="csv-table">Cargando datos…</div>
     </section>
   </main>
 
@@ -126,20 +44,66 @@
     Lunes 25 de Agosto de 2025 | Taller de ideación y creatividad | Sección 1 | Publicado con GitHub Pages.
   </footer>
 
+  <!-- Script para leer y mostrar el CSV -->
   <script>
-    // Controles simples: cambiar anchura del <img> para “zoom” sin perder calidad
-    const img = document.querySelector('.figure img');
-    const status = document.getElementById('status');
-    document.getElementById('fit').onclick = () => {
-      img.style.width = '100%';
-      img.style.maxWidth = '100%';
-      status.textContent = 'Ajustado al ancho del contenedor';
-    };
-    document.getElementById('zoom').onclick = () => {
-      img.style.width = '120%';
-      img.style.maxWidth = 'none';
-      status.textContent = 'Zoom al 120%';
-    };
+    const CSV_URL = 'Datos-circulacion-plaza-los-dominicos-Sheet1-2.csv';
+
+    function parseCSV(text) {
+      const rows = [];
+      let cur = '', inQuotes = false, row = [];
+      for (let i = 0; i < text.length; i++) {
+        const c = text[i], n = text[i+1];
+        if (c === '"' && inQuotes && n === '"') { cur += '"'; i++; continue; }
+        if (c === '"') { inQuotes = !inQuotes; continue; }
+        if (c === ',' && !inQuotes) { row.push(cur); cur = ''; continue; }
+        if ((c === '\\n' || c === '\\r') && !inQuotes) {
+          if (cur.length || row.length) { row.push(cur); rows.push(row); }
+          cur = ''; row = [];
+          if (c === '\\r' && n === '\\n') i++;
+          continue;
+        }
+        cur += c;
+      }
+      if (cur.length || row.length) { row.push(cur); rows.push(row); }
+      return rows;
+    }
+
+    function removeEmptyRows(rows) {
+      return rows.filter(r => r.some(cell => String(cell).trim() !== ''));
+    }
+
+    function toTable(rows) {
+      if (!rows.length) return '<p>No hay datos.</p>';
+      const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+      let html = '<table class="table">';
+      // Dibuja cada fila, detectando filas-título (una sola celda no vacía)
+      for (const r of rows) {
+        const nonEmpty = r.filter(c => c.trim() !== '');
+        const onlyTitle = nonEmpty.length === 1 && r.join('').trim().length > 0;
+        if (onlyTitle) {
+          html += `<tr><th class="table-title" colspan="100">${esc(nonEmpty[0])}</th></tr>`;
+          continue;
+        }
+        html += '<tr>';
+        for (const c of r) {
+          html += `<td>${esc(c)}</td>`;
+        }
+        html += '</tr>';
+      }
+      html += '</table>';
+      return html;
+    }
+
+    fetch(CSV_URL)
+      .then(r => { if (!r.ok) throw new Error('No se pudo cargar el CSV'); return r.text(); })
+      .then(text => {
+        let rows = parseCSV(text);
+        rows = removeEmptyRows(rows);
+        document.getElementById('csv-table').innerHTML = toTable(rows);
+      })
+      .catch(err => {
+        document.getElementById('csv-table').textContent = 'Error cargando CSV: ' + err.message;
+      });
   </script>
 </body>
 </html>
