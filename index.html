@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Circulación en Plaza Los Dominicos</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 0; padding: 16px; line-height: 1.45; }
+    header, main { max-width: 980px; margin: 0 auto; }
+    header { margin-bottom: 24px; }
+    .chart { margin: 20px 0 32px; }
+    .table-wrap { overflow-x: auto; border: 1px solid #e5e5e5; border-radius: 8px; }
+    table { border-collapse: collapse; width: 100%; font-size: 14px; }
+    th, td { padding: 10px 12px; border-bottom: 1px solid #eee; white-space: nowrap; }
+    th { position: sticky; top: 0; background: #fafafa; }
+    footer { margin: 40px 0 24px; font-size: 13px; color: #666; }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6"></script>
+</head>
+<body>
+  <header>
+    <h1>Circulación por rango etario</h1>
+    <p>Datos observados en Plaza Los Dominicos. Cada rango corresponde al promedio de los datos recopilados para ese grupo durante todos los días de observación.</p>
+  </header>
+
+  <main>
+    <section class="chart" id="chart-barras"></section>
+    <section class="chart" id="chart-apiladas"></section>
+
+    <h2>Tabla de datos</h2>
+    <div class="table-wrap">
+      <table id="tabla"></table>
+    </div>
+  </main>
+
+  <footer>
+    Hecho con Observable Plot. Visualización responsive para móvil y escritorio.
+  </footer>
+
+  <script>
+    // Datos embebidos (a partir de tu hoja)
+    const datos = [
+      { "Rango etario": "0-5 años",  "Jueves 10:00": 2,  "Jueves 14:30": 11, "Viernes 10:00": 4,  "Viernes 14:30": 9,   "Sábado 10:00": 0,  "Sábado 14:30": 4,  "Total": 30,  "%": 1.76, "Promedio rango": 6  },
+      { "Rango etario": "6-18 años", "Jueves 10:00": 3,  "Jueves 14:30": 22, "Viernes 10:00": 4,  "Viernes 14:30": 36,  "Sábado 10:00": 0,  "Sábado 14:30": 0,  "Total": 65,  "%": 3.80, "Promedio rango": 13 },
+      { "Rango etario": "19-30 años","Jueves 10:00": 40, "Jueves 14:30": 108,"Viernes 10:00": 35, "Viernes 14:30": 223, "Sábado 10:00": 20, "Sábado 14:30": 0,  "Total": 426, "%": 24.93,"Promedio rango": 85 },
+      { "Rango etario": "31-60 años","Jueves 10:00": 25, "Jueves 14:30": 132,"Viernes 10:00": 0,  "Viernes 14:30": 173, "Sábado 10:00": 30, "Sábado 14:30": 51, "Total": 411, "%": 24.05,"Promedio rango": 82 },
+      { "Rango etario": "61-90 años","Jueves 10:00": 39, "Jueves 14:30": 0,  "Viernes 10:00": 28, "Viernes 14:30": 80,  "Sábado 10:00": 42, "Sábado 14:30": 0,  "Total": 189, "%": 11.06,"Promedio rango": 47 }
+    ];
+
+    // Utilidades
+    const keysMomentos = ["Jueves 10:00","Jueves 14:30","Viernes 10:00","Viernes 14:30","Sábado 10:00","Sábado 14:30"];
+
+    // 1) Barras horizontales por Total
+    (function barrasTotales(){
+      const plot = Plot.plot({
+        height: 360,
+        marginLeft: 120,
+        x: { label: "Personas" },
+        y: { label: null, tickSize: 0 },
+        color: { legend: false, range: ["#b7e4c7","#95d5b2","#74c69d","#52b788","#2d6a4f"] },
+        marks: [
+          Plot.barX(datos, { x: "Total", y: "Rango etario", fill: "Rango etario", inset: 2, tip: true }),
+          Plot.text(datos, { x: d => d.Total + 6, y: "Rango etario", text: d => d.Total, anchor: "left" })
+        ]
+      });
+      document.getElementById("chart-barras").append(plot);
+    })();
+
+    // 2) Barras apiladas por momento del día
+    (function barrasApiladas(){
+      const tidy = [];
+      for (const row of datos) {
+        for (const k of keysMomentos) {
+          const v = row[k];
+          if (v != null && v !== "" && !isNaN(v)) {
+            tidy.push({ "Rango etario": row["Rango etario"], "Momento": k, "Valor": +v });
+          }
+        }
+      }
+      const plot = Plot.plot({
+        height: 440,
+        marginBottom: 80,
+        y: { label: "Personas" },
+        x: { label: null, tickRotate: 40 },
+        color: { legend: true, range: ["#b7e4c7","#95d5b2","#74c69d","#52b788","#2d6a4f"] },
+        marks: [
+          Plot.barY(tidy, Plot.stackY({ x: "Momento", y: "Valor", fill: "Rango etario", tip: true }))
+        ]
+      });
+      document.getElementById("chart-apiladas").append(plot);
+    })();
+
+    // 3) Tabla
+    (function renderTable(){
+      const el = document.getElementById("tabla");
+      const cols = Object.keys(datos[0]);
+      el.innerHTML = `
+        <thead><tr>${cols.map(c=>`<th>${c}</th>`).join("")}</tr></thead>
+        <tbody>
+          ${datos.map(r=>`<tr>${cols.map(c=>`<td>${r[c]}</td>`).join("")}</tr>`).join("")}
+        </tbody>
+      `;
+    })();
+  </script>
+</body>
+</html>
