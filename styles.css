@@ -1,50 +1,52 @@
-:root { color-scheme: light; }
+:root { 
+  color-scheme: light; 
+}
 
-html, body { height: 100%; }
+html, body { 
+  height: 100%; 
+}
 
 body {
   font-family: "DM Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   margin: 0;
   padding: 0;
-  line-height: 1.5;
+  line-height: 1.45;
   background: #ffffff;
   color: #111827;
 }
 
-/* Contenedor principal */
 header, main, footer {
   max-width: 1100px;
   margin: 0 auto;
-  padding: clamp(16px, 3vw, 32px);
+  padding: clamp(12px, 3vw, 24px);
 }
 
-/* Títulos y subtítulos */
 header h1 {
-  margin: 0 0 8px;
-  line-height: 1.1; /* menos interlineado en h1 */
-  font-size: clamp(32px, 4vw, 32px);
+  margin: 0 0 6px;
+  line-height: 1.1;
+  font-size: clamp(22px, 4vw, 32px);
   color: #0f172a;
 }
 
 header p {
   margin: 0;
   color: #838383;
+  font-size: clamp(13px, 2.4vw, 15px);
 }
 
-/* Tarjetas */
 .card {
-  background: #f5f5f52d;
+  background: #f7f7f8;
   border: 1px solid #ececec;
-  border-radius: 8px;
-  padding: clamp(16px, 3vw, 28px);
-  margin-bottom: 20px; /* separa las cards entre sí */
+  border-radius: 10px;
+  padding: clamp(12px, 3vw, 20px);
+  margin-bottom: clamp(12px, 3vw, 20px);
 }
 
 .card-subtitle {
-  margin-top: 0;
-  margin-bottom: 15px;
+  margin: 0 0 10px;
   font-weight: 500;
-  margin-left: 0;
+  color: #444;
+  font-size: clamp(13px, 2.6vw, 15px);
 }
 
 .descripcion-grafico {
@@ -52,29 +54,40 @@ header p {
   color: #757575;
 }
 
-/* Figura / imagen */
-.figure {
-  display: grid;
-  gap: 14px;
+.figure { 
+  display: grid; 
+  gap: 12px; 
 }
 
-.figure img,
-.figure object,
 .figure svg {
   width: 100%;
   height: auto;
   display: block;
   border-radius: 8px;
   background: #ffffff;
-  box-shadow: 0 1px 0 rgba(0,0,0,0.03);
 }
 
-/* Controles y botones */
+figure { 
+  margin: 0; 
+}
+
+figcaption {
+  font-size: 13px;
+  color: #6b7280;
+  margin-top: 8px;
+  line-height: 1.4;
+  font-style: italic;
+}
+
 .controls {
   display: flex;
-  gap: 2px;
+  gap: 8px;
   flex-wrap: wrap;
-  margin-top: 20px;
+  margin-top: 24px;
+  justify-content: center;
+  padding: 16px;
+  background: #f8fafc;
+  border-radius: 8px;
 }
 
 .btn {
@@ -83,18 +96,17 @@ header p {
   background: #ffffff;
   color: #111827;
   border-radius: 6px;
-  padding: 6px 10px;
-  font-weight: 200;
+  padding: 10px 16px;
+  font-weight: 500;
   cursor: pointer;
   text-decoration: none;
-  font-size: 14px;
-  transition: background-color .15s ease, border-color .15s ease, box-shadow .15s ease;
+  font-size: 13px;
+  transition: background-color .15s ease;
 }
 
 .btn:hover {
   background: #f3f4f6;
   border-color: #d1d5db;
-  box-shadow: 0 1px 0 rgba(0,0,0,0.04);
 }
 
 .btn:focus-visible {
@@ -102,63 +114,125 @@ header p {
   outline-offset: 2px;
 }
 
-/* Meta y footer */
-.meta {
-  align-self: center;
-  font-size: 13px;
-  color: #6b7280;
+.meta { 
+  align-self: center; 
+  font-size: 12px; 
+  color: #6b7280; 
 }
 
-footer {
-  font-size: 13px;
-  color: #465065;
+footer { 
+  font-size: 13px; 
+  color: #465065; 
 }
 
-/* Tabla generada (estática) */
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 8px;
+}
+
 .table {
   border-collapse: collapse;
   width: 100%;
-  margin-top: 12px;
+  min-width: 720px;
+  font-size: 13px;
 }
 
-.table th,
-.table td {
+.table th, .table td {
   border: 1px solid #e5e7eb;
-  padding: 8px;
+  padding: 6px 8px;
   text-align: left;
+  white-space: nowrap;
 }
 
-.table th {
-  background: #f8f8f8;
-  font-weight: 600;
+.table th { 
+  background: #f3f4f6; 
+  font-weight: 500; 
 }
 
 .table-title {
-  text-align: left;
-  padding: 10px 8px;
-  border: 0;
+  text-align: left; 
+  padding: 8px; 
+  border: 0; 
   background: #f8fafc;
-  font-size: 1rem;
+  font-size: 0.95rem; 
+  font-weight: 400; 
+  color: #374151;
 }
 
-/* Safe area para iPhone con notch */
-@supports (padding: max(0px)) {
-  body { padding-bottom: env(safe-area-inset-bottom); }
-  header, main, footer {
-    padding-left: max(16px, env(safe-area-inset-left));
-    padding-right: max(16px, env(safe-area-inset-right));
+.num { 
+  text-align: right; 
+  font-variant-numeric: tabular-nums; 
+}
+
+/* Optimización para móvil */
+@media (max-width: 640px) {
+  .table { 
+    font-size: 12px; 
+    min-width: 680px; 
+  }
+
+  .table th, .table td { 
+    padding: 5px 6px; 
+  }
+
+  header, main, footer { 
+    padding: 14px; 
+  }
+
+  .btn { 
+    padding: 8px 12px; 
+    font-size: 12px; 
+  }
+
+  .controls {
+    gap: 6px;
+    padding: 12px;
+  }
+
+  .figure svg {
+    max-height: 300px;
   }
 }
 
-/* Mantener light aunque el sistema esté en dark */
-@media (prefers-color-scheme: dark) {
-  :root { color-scheme: light; }
+/* Optimización extra para móviles muy pequeños */
+@media (max-width: 480px) {
+  .controls {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 280px;
+    text-align: center;
+  }
+
+  .table {
+    font-size: 11px;
+  }
+
+  .figure svg {
+    max-height: 250px;
+  }
 }
 
-/* Ajuste de espacio entre h1 y p */
-header h1 { margin-bottom: 0.1px; }
-header p { margin-top: 0; }
+/* Soporte para dispositivos con safe-area */
+@supports (padding: max(0px)) {
+  body { 
+    padding-bottom: env(safe-area-inset-bottom); 
+  }
 
-/* Evita margen extra en la última card antes del footer si quieres
-main .card:last-child { margin-bottom: 0; } */
+  header, main, footer {
+    padding-left: max(14px, env(safe-area-inset-left));
+    padding-right: max(14px, env(safe-area-inset-right));
+  }
+}
 
+/* Mantener tema claro siempre */
+@media (prefers-color-scheme: dark) {
+  :root { 
+    color-scheme: light; 
+  }
+}
