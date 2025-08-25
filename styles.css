@@ -1,10 +1,6 @@
-:root { 
-  color-scheme: light; 
-}
+:root { color-scheme: light; }
 
-html, body { 
-  height: 100%; 
-}
+html, body { height: 100%; }
 
 body {
   font-family: "DM Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
@@ -42,33 +38,17 @@ header p {
   margin-bottom: clamp(12px, 3vw, 20px);
 }
 
-.card-subtitle {
-  margin: 0 0 10px;
-  font-weight: 500;
-  color: #444;
-  font-size: clamp(13px, 2.6vw, 15px);
+.figure {
+  display: grid;
+  gap: 12px;
 }
 
-.descripcion-grafico {
-  font-size: 0.95em;
-  color: #757575;
-}
-
-.figure { 
-  display: grid; 
-  gap: 12px; 
-}
-
-.figure svg {
+.figure img {
   width: 100%;
   height: auto;
   display: block;
   border-radius: 8px;
   background: #ffffff;
-}
-
-figure { 
-  margin: 0; 
 }
 
 figcaption {
@@ -78,6 +58,41 @@ figcaption {
   line-height: 1.4;
   font-style: italic;
 }
+
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 8px;
+}
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 720px;
+  font-size: 13px;
+}
+
+.table th, .table td {
+  border: 1px solid #e5e7eb;
+  padding: 6px 8px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.table th { background: #f3f4f6; font-weight: 500; }
+
+.table-title {
+  text-align: left;
+  padding: 8px;
+  border: 0;
+  background: #f8fafc;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: #374151;
+}
+
+.num { text-align: right; font-variant-numeric: tabular-nums; }
 
 .controls {
   display: flex;
@@ -103,136 +118,41 @@ figcaption {
   font-size: 13px;
   transition: background-color .15s ease;
 }
-
 .btn:hover {
   background: #f3f4f6;
   border-color: #d1d5db;
 }
-
 .btn:focus-visible {
   outline: 2px solid #3b82f6;
   outline-offset: 2px;
 }
 
-.meta { 
-  align-self: center; 
-  font-size: 12px; 
-  color: #6b7280; 
-}
-
-footer { 
-  font-size: 13px; 
-  color: #465065; 
-}
-
-.table-wrap {
-  width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  border-radius: 8px;
-}
-
-.table {
-  border-collapse: collapse;
-  width: 100%;
-  min-width: 720px;
+footer {
   font-size: 13px;
+  color: #465065;
 }
 
-.table th, .table td {
-  border: 1px solid #e5e7eb;
-  padding: 6px 8px;
-  text-align: left;
-  white-space: nowrap;
-}
-
-.table th { 
-  background: #f3f4f6; 
-  font-weight: 500; 
-}
-
-.table-title {
-  text-align: left; 
-  padding: 8px; 
-  border: 0; 
-  background: #f8fafc;
-  font-size: 0.95rem; 
-  font-weight: 400; 
-  color: #374151;
-}
-
-.num { 
-  text-align: right; 
-  font-variant-numeric: tabular-nums; 
-}
-
-/* Optimización para móvil */
 @media (max-width: 640px) {
-  .table { 
-    font-size: 12px; 
-    min-width: 680px; 
-  }
-
-  .table th, .table td { 
-    padding: 5px 6px; 
-  }
-
-  header, main, footer { 
-    padding: 14px; 
-  }
-
-  .btn { 
-    padding: 8px 12px; 
-    font-size: 12px; 
-  }
-
-  .controls {
-    gap: 6px;
-    padding: 12px;
-  }
-
-  .figure svg {
-    max-height: 300px;
-  }
+  .table { font-size: 12px; min-width: 680px; }
+  .table th, .table td { padding: 5px 6px; }
+  header, main, footer { padding: 14px; }
+  .btn { padding: 8px 12px; font-size: 12px; }
+  .controls { gap: 6px; padding: 12px;}
+  .figure img { max-height: 300px; }
 }
-
-/* Optimización extra para móviles muy pequeños */
 @media (max-width: 480px) {
-  .controls {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .btn {
-    width: 100%;
-    max-width: 280px;
-    text-align: center;
-  }
-
-  .table {
-    font-size: 11px;
-  }
-
-  .figure svg {
-    max-height: 250px;
-  }
+  .controls { flex-direction: column; align-items: center; }
+  .btn { width: 100%; max-width: 280px; text-align: center; }
+  .table { font-size: 11px; }
+  .figure img { max-height: 250px;}
 }
-
-/* Soporte para dispositivos con safe-area */
 @supports (padding: max(0px)) {
-  body { 
-    padding-bottom: env(safe-area-inset-bottom); 
-  }
-
+  body { padding-bottom: env(safe-area-inset-bottom); }
   header, main, footer {
     padding-left: max(14px, env(safe-area-inset-left));
     padding-right: max(14px, env(safe-area-inset-right));
   }
 }
-
-/* Mantener tema claro siempre */
 @media (prefers-color-scheme: dark) {
-  :root { 
-    color-scheme: light; 
-  }
+  :root { color-scheme: light; }
 }
