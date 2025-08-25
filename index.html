@@ -12,22 +12,26 @@
 <body>
   <header>
     <h1>Gráficos de circulación plaza Los Dominicos</h1>
-    <p>Exploración visual de los patrones de uso de la Plaza Los Dominicos según horario y grupo etario. Cada gráfico muestra distintas dimensiones del flujo peatonal recolectado en tres jornadas de observación durante agosto.</p>
+    <p>Representaciones visuales de la circulación en la Plaza Los Dominicos según horario y grupo etario. Cada gráfico muestra distintas dimensiones del flujo peatonal recolectado en tres jornadas de observación durante agosto.</p>
   </header>
 
   <main>
     <!-- Gráfico divergente -->
     <section class="card" id="divergente">
       <figure class="figure">
-        <img src="grafico-divergente.svg" alt="Uso de vías establecidas vs informales por rango etario">
-        <figcaption>Comparación del uso de vías establecidas e informales por rango etario, mostrando preferencias de circulación según la edad.</figcaption>
+        <a href="grafico-divergente.pdf" target="_blank">
+          <img src="grafico-divergente.svg" alt="Uso de vías establecidas vs informales por rango etario">
+        </a>
+        <figcaption>Comparación del uso de vías establecidas e informales por rango etario. Muestra preferencias de circulación según la edad.</figcaption>
       </figure>
     </section>
 
     <!-- Gráfico radial -->
     <section class="card" id="radial">
       <figure class="figure">
-        <img src="grafico-radial.svg" alt="Distribución radial por rango etario y momento del día">
+        <a href="grafico-radial.pdf" target="_blank">
+          <img src="grafico-radial.svg" alt="Distribución radial por rango etario y momento del día">
+        </a>
         <figcaption>Distribución radial por rango etario: cada polígono representa un grupo de edad y su radio indica la intensidad por momento del día.</figcaption>
       </figure>
     </section>
@@ -35,8 +39,10 @@
     <!-- Heatmap -->
     <section class="card" id="heatmap">
       <figure class="figure">
-        <img src="grafico-heatmap.svg" alt="Mapa de calor de circulación por rango etario y momento del día">
-        <figcaption>Mapa de calor que visualiza la densidad de usuarios por rango etario y momento del día, destacando los peaks de actividad.</figcaption>
+        <a href="grafico-heatmap.pdf" target="_blank">
+          <img src="grafico-heatmap.svg" alt="Mapa de calor de circulación por rango etario y momento del día">
+        </a>
+        <figcaption>Mapa de calor que visualiza la densidad de usuarios por rango etario y momento del día. Destaca los peaks de actividad.</figcaption>
       </figure>
     </section>
 
@@ -57,7 +63,7 @@
               <th>Sáb 09-08 14:30</th>
               <th class="num">Total</th>
               <th class="num">%</th>
-              <th class="num">Promedio rango</th>
+              <th class="num">Promedio rango etario</th>
               <th></th>
               <th class="num">Promedio mañana</th>
               <th class="num">Promedio tarde</th>
@@ -87,7 +93,7 @@
               <th>Sáb 09-08 14:30</th>
               <th class="num">Total</th>
               <th class="num">%</th>
-              <th class="num">Promedio rango</th>
+              <th class="num">Promedio rango etario</th>
               <th></th>
               <th class="num">Promedio mañana</th>
               <th class="num">Promedio tarde</th>
@@ -117,7 +123,7 @@
               <th>Sáb 09-08 14:30</th>
               <th class="num">Total</th>
               <th class="num">%</th>
-              <th class="num">Promedio rango</th>
+              <th class="num">Promedio rango etario</th>
               <th></th>
               <th class="num">Promedio mañana</th>
               <th class="num">Promedio tarde</th>
@@ -133,13 +139,22 @@
           </tbody>
         </table>
       </div>
+             <p class="table-caption">
+         <br>
+         *Todos los datos fueron recopilados entre el jueves 7 y el sábado 9 de agosto de 2025.
+         <br>
+         <br>
+         **Los datos muestran el flujo peatonal registrado en Plaza Los Dominicos durante tres jornadas de observación en agosto, diferenciando entre vías establecidas e informales según grupos etarios y horarios del día.</p>
     </section>
+
+    
 
     <!-- Botones para abrir en nueva pestaña -->
 <section class="controls" aria-label="Gráficos">
-  <a class="btn" href="grafico-radial.svg" target="_blank">Abrir gráfico radial</a>
-  <a class="btn" href="grafico-divergente.svg" target="_blank">Abrir gráfico divergente</a>
-  <a class="btn" href="grafico-heatmap.svg" target="_blank">Abrir heatmap</a>
+  <a class="btn" href="grafico-radial.pdf" target="_blank">Abrir gráfico radial</a>
+  <a class="btn" href="grafico-divergente.pdf" target="_blank">Abrir gráfico divergente</a>
+  <a class="btn" href="grafico-heatmap.pdf" target="_blank">Abrir heatmap</a>
+  <a class="btn" href="lamina-certamen-taller.pdf" target="_blank">Abrir lámina en nueva pestaña</a>
 </section>
 
   </main>
@@ -147,7 +162,7 @@
   <footer>
     Lunes 25 de Agosto de 2025 | Taller de ideación y creatividad | Sección 1
     <div>
-      Código HTML publicado con <a href="https://github.com/antomarinooo/datos-circulacion-taller-ideacion" target="_blank" rel="noopener">@antomarinooo en github</a>
+      Código HTML / CSS publicado con github pages por <a href="https://github.com/antomarinooo/datos-circulacion-taller-ideacion" target="_blank" rel="noopener">@antomarinooo</a>
     </div>
   </footer>
 </body>
