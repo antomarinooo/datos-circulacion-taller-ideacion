@@ -16,366 +16,26 @@
   </header>
 
   <main>
-    <!-- Gráfico 1: Distribución radial -->
-    <section class="card" id="radial">
-      <figure class="figure">
-        <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-    <style>
-        .titulo { font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 600; fill: #111827; }
-        .etiqueta { font-family: 'DM Sans', sans-serif; font-size: 12px; fill: #374151; }
-        .valor { font-family: 'DM Sans', sans-serif; font-size: 11px; fill: #6b7280; }
-    </style>
-
-    <!-- Título -->
-    <text x="250.0" y="30" text-anchor="middle" class="titulo">
-        Distribución radial por rango etario
-    </text>
-
-    <!-- Círculos concéntricos de referencia -->
-    <circle cx="250" cy="250" r="40" fill="none" stroke="#e5e7eb" stroke-width="1"/>
-    <circle cx="250" cy="250" r="80" fill="none" stroke="#e5e7eb" stroke-width="1"/>
-    <circle cx="250" cy="250" r="120" fill="none" stroke="#e5e7eb" stroke-width="1"/>
-    <circle cx="250" cy="250" r="160" fill="none" stroke="#e5e7eb" stroke-width="1"/>
-    
-        <circle cx="250.0" cy="234.7" r="4" fill="#E8F4FD"/>
-        <text x="250.0" y="50.0" text-anchor="middle" class="etiqueta">0-5 años</text>
-        <text x="250.0" y="62.0" text-anchor="middle" class="valor">3.41%</text>
-        
-        <circle cx="281.2" cy="239.9" r="4" fill="#B8D4F0"/>
-        <text x="440.2" y="188.2" text-anchor="middle" class="etiqueta">6-18 años</text>
-        <text x="440.2" y="200.2" text-anchor="middle" class="valor">7.28%</text>
-        
-        <circle cx="341.4" cy="375.9" r="4" fill="#7FB7E3"/>
-        <text x="367.6" y="411.8" text-anchor="middle" class="etiqueta">19-30 años</text>
-        <text x="367.6" y="423.8" text-anchor="middle" class="valor">34.57%</text>
-        
-        <circle cx="157.3" cy="377.5" r="4" fill="#4A9BD1"/>
-        <text x="132.4" y="411.8" text-anchor="middle" class="etiqueta">31-60 años</text>
-        <text x="132.4" y="423.8" text-anchor="middle" class="valor">35.03%</text>
-        
-        <circle cx="165.6" cy="222.6" r="4" fill="#1E7FB8"/>
-        <text x="59.8" y="188.2" text-anchor="middle" class="etiqueta">61-90 años</text>
-        <text x="59.8" y="200.2" text-anchor="middle" class="valor">19.71%</text>
-        
-    <polygon points="250.0,234.7 281.2,239.9 341.4,375.9 157.3,377.5 165.6,222.6" fill="rgba(59, 130, 246, 0.2)" stroke="#3b82f6" stroke-width="2"/>
-    
-</svg>
-        <figcaption>Distribución radial por rango etario: cada polígono representa un grupo de edad y su radio indica la intensidad por momento del día.</figcaption>
-      </figure>
-    </section>
-
-    <!-- Gráfico 2: Gráfico divergente (vías) -->
+    <!-- Gráfico divergente -->
     <section class="card" id="divergente">
       <figure class="figure">
-        <svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
-    <style>
-        .titulo { font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 600; fill: #111827; }
-        .subtitulo { font-family: 'DM Sans', sans-serif; font-size: 12px; fill: #6b7280; }
-        .etiqueta-rango { font-family: 'DM Sans', sans-serif; font-size: 11px; fill: #374151; text-anchor: middle; }
-        .valor-barra { font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 500; fill: #ffffff; text-anchor: middle; }
-        .leyenda { font-family: 'DM Sans', sans-serif; font-size: 11px; fill: #374151; }
-    </style>
-
-    <!-- Título -->
-    <text x="300.0" y="30" text-anchor="middle" class="titulo">
-        Uso de vías establecidas vs informales por rango etario
-    </text>
-
-    <!-- Línea central -->
-    <line x1="300.0" y1="60" x2="300.0" y2="350" 
-          stroke="#d1d5db" stroke-width="2"/>
-
-    <!-- Leyenda -->
-    <rect x="150.0" y="360" width="15" height="15" fill="#3b82f6"/>
-    <text x="170.0" y="372" class="leyenda">Vías establecidas</text>
-
-    <rect x="320.0" y="360" width="15" height="15" fill="#f59e0b"/>
-    <text x="340.0" y="372" class="leyenda">Vías informales</text>
-    
-        <rect x="281.941309255079" y="60" width="18.058690744920995" height="40" 
-              fill="#3b82f6"/>
-        <text x="290.9706546275395" y="84.0" 
-              class="valor-barra">40</text>
-        
-        <rect x="300.0" y="60" width="2.2573363431151243" height="40" 
-              fill="#f59e0b"/>
-        <text x="301.12866817155754" y="84.0" 
-              class="valor-barra">5</text>
-        
-        <text x="300.0" y="115" class="etiqueta-rango">0-5 años</text>
-        
-        <rect x="261.1738148984199" y="120" width="38.82618510158014" height="40" 
-              fill="#3b82f6"/>
-        <text x="280.58690744920995" y="144.0" 
-              class="valor-barra">86</text>
-        
-        <rect x="300.0" y="120" width="4.514672686230249" height="40" 
-              fill="#f59e0b"/>
-        <text x="302.2573363431151" y="144.0" 
-              class="valor-barra">10</text>
-        
-        <text x="300.0" y="175" class="etiqueta-rango">6-18 años</text>
-        
-        <rect x="100.0" y="180" width="200.0" height="40" 
-              fill="#3b82f6"/>
-        <text x="200.0" y="204.0" 
-              class="valor-barra">443</text>
-        
-        <rect x="300.0" y="180" width="5.8690744920993225" height="40" 
-              fill="#f59e0b"/>
-        <text x="302.9345372460497" y="204.0" 
-              class="valor-barra">13</text>
-        
-        <text x="300.0" y="235" class="etiqueta-rango">19-30 años</text>
-        
-        <rect x="101.80586907449211" y="240" width="198.1941309255079" height="40" 
-              fill="#3b82f6"/>
-        <text x="200.90293453724604" y="264.0" 
-              class="valor-barra">439</text>
-        
-        <rect x="300.0" y="240" width="10.383747178329571" height="40" 
-              fill="#f59e0b"/>
-        <text x="305.1918735891648" y="264.0" 
-              class="valor-barra">23</text>
-        
-        <text x="300.0" y="295" class="etiqueta-rango">31-60 años</text>
-        
-        <rect x="186.68171557562079" y="300" width="113.31828442437923" height="40" 
-              fill="#3b82f6"/>
-        <text x="243.3408577878104" y="324.0" 
-              class="valor-barra">251</text>
-        
-        <rect x="300.0" y="300" width="4.063205417607223" height="40" 
-              fill="#f59e0b"/>
-        <text x="302.03160270880363" y="324.0" 
-              class="valor-barra">9</text>
-        
-        <text x="300.0" y="355" class="etiqueta-rango">61-90 años</text>
-        
-</svg>
+        <img src="grafico-divergente.jpg" alt="Uso de vías establecidas vs informales por rango etario">
         <figcaption>Comparación del uso de vías establecidas e informales por rango etario, mostrando preferencias de circulación según la edad.</figcaption>
       </figure>
     </section>
 
-    <!-- Gráfico 3: Heatmap -->
+    <!-- Gráfico radial -->
+    <section class="card" id="radial">
+      <figure class="figure">
+        <img src="grafico-radial.jpg" alt="Distribución radial por rango etario y momento del día">
+        <figcaption>Distribución radial por rango etario: cada polígono representa un grupo de edad y su radio indica la intensidad por momento del día.</figcaption>
+      </figure>
+    </section>
+
+    <!-- Heatmap -->
     <section class="card" id="heatmap">
       <figure class="figure">
-        <svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
-    <style>
-        .titulo { font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 600; fill: #111827; }
-        .etiqueta-y { font-family: 'DM Sans', sans-serif; font-size: 11px; fill: #374151; text-anchor: end; }
-        .etiqueta-x { font-family: 'DM Sans', sans-serif; font-size: 10px; fill: #374151; text-anchor: middle; }
-        .valor-cell { font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 500; text-anchor: middle; }
-    </style>
-
-    <!-- Título -->
-    <text x="300.0" y="30" text-anchor="middle" class="titulo">
-        Mapa de calor: circulación por rango etario y momento
-    </text>
-    
-        <text x="70" y="89.0" class="etiqueta-y">0-5 años</text>
-        
-        <text x="70" y="139.0" class="etiqueta-y">6-18 años</text>
-        
-        <text x="70" y="189.0" class="etiqueta-y">19-30 años</text>
-        
-        <text x="70" y="239.0" class="etiqueta-y">31-60 años</text>
-        
-        <text x="70" y="289.0" class="etiqueta-y">61-90 años</text>
-        
-        <text x="115.0" y="50" class="etiqueta-x">Jue 10:00</text>
-        
-        <text x="185.0" y="50" class="etiqueta-x">Jue 14:30</text>
-        
-        <text x="255.0" y="50" class="etiqueta-x">Vie 10:00</text>
-        
-        <text x="325.0" y="50" class="etiqueta-x">Vie 14:30</text>
-        
-        <text x="395.0" y="50" class="etiqueta-x">Sáb 10:00</text>
-        
-        <text x="465.0" y="50" class="etiqueta-x">Sáb 14:30</text>
-        
-            <rect x="80" y="60" width="70" height="50" 
-                  fill="rgb(60, 131, 246)" 
-                  stroke="#ffffff" stroke-width="2"/>
-            <text x="115.0" y="89.0" 
-                  fill="#111827" class="valor-cell">2</text>
-            
-            <rect x="150" y="60" width="70" height="50" 
-                  fill="rgb(67, 135, 246)" 
-                  stroke="#ffffff" stroke-width="2"/>
-            <text x="185.0" y="89.0" 
-                  fill="#111827" class="valor-cell">11</text>
-            
-            <rect x="220" y="60" width="70" height="50" 
-                  fill="rgb(62, 132, 246)" 
-                  stroke="#ffffff" stroke-width="2"/>
-            <text x="255.0" y="89.0" 
-                  fill="#111827" class="valor-cell">4</text>
-            
-            <rect x="290" y="60" width="70" height="50" 
-                  fill="rgb(66, 134, 246)" 
-                  stroke="#ffffff" stroke-width="2"/>
-            <text x="325.0" y="89.0" 
-                  fill="#111827" class="valor-cell">9</text>
-            
-            <rect x="360" y="60" width="70" height="50" 
-                  fill="rgb(68, 136, 246)" 
-                  stroke="#ffffff" stroke-width="2"/>
-            <text x="395.0" y="89.0" 
-                  fill="#111827" class="valor-cell">12</text>
-            
-            <rect x="430" y="60" width="70" height="50" 
-                  fill="rgb(64, 133, 246)" 
-                  stroke="#ffffff" stroke-width="2"/>
-            <text x="465.0" y="89.0" 
-                  fill="#111827" class="valor-cell">7</text>
-            
-            <rect x="80" y="110" width="70" height="50" 
-                  fill="rgb(61, 131, 246)" 
-                  stroke="#ffffff" stroke-width="2"/>
-            <text x="115.0" y="139.0" 
-                  fill="#111827" class="valor-cell">3</text>
-            
-            <rect x="150" y="110" width="70" height="50" 
-                  fill="rgb(77, 141, 246)" 
-                  stroke="#ffffff" stroke-width="2"/>
-            <text x="185.0" y="139.0" 
-                  fill="#111827" class="valor-cell">23</text>
-            
-            <rect x="220" y="110" width="70" height="50" 
-                  fill="rgb(62, 132, 246)" 
-                  stroke="#ffffff" stroke-width="2"/>
-            <text x="255.0" y="139.0" 
-                  fill="#111827" class="valor-cell">4</text>
-            
-            <rect x="290" y="110" width="70" height="50" 
-                  fill="rgb(90, 150, 247)" 
-                  stroke="#ffffff" stroke-width="2"/>
-            <text x="325.0" y="139.0" 
-                  fill="#111827" class="valor-cell">40</text>
-            
-            <rect x="360" y="110" width="70" height="50" 
-                  fill="rgb(75, 140, 246)" 
-                  stroke="#ffffff" stroke-width="2"/>
-            <text x="395.0" y="139.0" 
-                  fill="#111827" class="valor-cell">21</text>
-            
-            <rect x="430" y="110" width="70" height="50" 
-                  fill="rgb(62, 132, 246)" 
-                  stroke="#ffffff" stroke-width="2"/>
-            <text x="465.0" y="139.0" 
-                  fill="#111827" class="valor-cell">5</text>
-            
-            <rect x="80" y="160" width="70" height="50" 
-                  fill="rgb(93, 152, 247)" 
-                  stroke="#ffffff" stroke-width="2"/>
-            <text x="115.0" y="189.0" 
-                  fill="#111827" class="valor-cell">44</text>
-            
-            <rect x="150" y="160" width="70" height="50" 
-                  fill="rgb(146, 186, 250)" 
-                  stroke="#ffffff" stroke-width="2"/>
-            <text x="185.0" y="189.0" 
-                  fill="#111827" class="valor-cell">110</text>
-            
-            <rect x="220" y="160" width="70" height="50" 
-                  fill="rgb(88, 148, 247)" 
-                  stroke="#ffffff" stroke-width="2"/>
-            <text x="255.0" y="189.0" 
-                  fill="#111827" class="valor-cell">37</text>
-            
-            <rect x="290" y="160" width="70" height="50" 
-                  fill="rgb(239, 246, 255)" 
-                  stroke="#ffffff" stroke-width="2"/>
-            <text x="325.0" y="189.0" 
-                  fill="#ffffff" class="valor-cell">227</text>
-            
-            <rect x="360" y="160" width="70" height="50" 
-                  fill="rgb(72, 138, 246)" 
-                  stroke="#ffffff" stroke-width="2"/>
-            <text x="395.0" y="189.0" 
-                  fill="#111827" class="valor-cell">17</text>
-            
-            <rect x="430" y="160" width="70" height="50" 
-                  fill="rgb(75, 140, 246)" 
-                  stroke="#ffffff" stroke-width="2"/>
-            <text x="465.0" y="189.0" 
-                  fill="#111827" class="valor-cell">21</text>
-            
-            <rect x="80" y="210" width="70" height="50" 
-                  fill="rgb(83, 145, 247)" 
-                  stroke="#ffffff" stroke-width="2"/>
-            <text x="115.0" y="239.0" 
-                  fill="#111827" class="valor-cell">31</text>
-            
-            <rect x="150" y="210" width="70" height="50" 
-                  fill="rgb(166, 198, 251)" 
-                  stroke="#ffffff" stroke-width="2"/>
-            <text x="185.0" y="239.0" 
-                  fill="#111827" class="valor-cell">135</text>
-            
-            <rect x="220" y="210" width="70" height="50" 
-                  fill="rgb(101, 157, 248)" 
-                  stroke="#ffffff" stroke-width="2"/>
-            <text x="255.0" y="239.0" 
-                  fill="#111827" class="valor-cell">53</text>
-            
-            <rect x="290" y="210" width="70" height="50" 
-                  fill="rgb(196, 218, 252)" 
-                  stroke="#ffffff" stroke-width="2"/>
-            <text x="325.0" y="239.0" 
-                  fill="#ffffff" class="valor-cell">174</text>
-            
-            <rect x="360" y="210" width="70" height="50" 
-                  fill="rgb(88, 148, 247)" 
-                  stroke="#ffffff" stroke-width="2"/>
-            <text x="395.0" y="239.0" 
-                  fill="#111827" class="valor-cell">37</text>
-            
-            <rect x="430" y="210" width="70" height="50" 
-                  fill="rgb(84, 146, 247)" 
-                  stroke="#ffffff" stroke-width="2"/>
-            <text x="465.0" y="239.0" 
-                  fill="#111827" class="valor-cell">32</text>
-            
-            <rect x="80" y="260" width="70" height="50" 
-                  fill="rgb(82, 145, 247)" 
-                  stroke="#ffffff" stroke-width="2"/>
-            <text x="115.0" y="289.0" 
-                  fill="#111827" class="valor-cell">30</text>
-            
-            <rect x="150" y="260" width="70" height="50" 
-                  fill="rgb(90, 150, 247)" 
-                  stroke="#ffffff" stroke-width="2"/>
-            <text x="185.0" y="289.0" 
-                  fill="#111827" class="valor-cell">40</text>
-            
-            <rect x="220" y="260" width="70" height="50" 
-                  fill="rgb(83, 145, 247)" 
-                  stroke="#ffffff" stroke-width="2"/>
-            <text x="255.0" y="289.0" 
-                  fill="#111827" class="valor-cell">31</text>
-            
-            <rect x="290" y="260" width="70" height="50" 
-                  fill="rgb(125, 172, 249)" 
-                  stroke="#ffffff" stroke-width="2"/>
-            <text x="325.0" y="289.0" 
-                  fill="#111827" class="valor-cell">84</text>
-            
-            <rect x="360" y="260" width="70" height="50" 
-                  fill="rgb(84, 146, 247)" 
-                  stroke="#ffffff" stroke-width="2"/>
-            <text x="395.0" y="289.0" 
-                  fill="#111827" class="valor-cell">32</text>
-            
-            <rect x="430" y="260" width="70" height="50" 
-                  fill="rgb(93, 151, 247)" 
-                  stroke="#ffffff" stroke-width="2"/>
-            <text x="465.0" y="289.0" 
-                  fill="#111827" class="valor-cell">43</text>
-            
-</svg>
+        <img src="grafico-heatmap.jpg" alt="Mapa de calor de circulación por rango etario y momento del día">
         <figcaption>Mapa de calor que visualiza la densidad de usuarios por rango etario y momento del día, destacando los picos de actividad.</figcaption>
       </figure>
     </section>
@@ -383,101 +43,110 @@
     <!-- Tablas de datos -->
     <section class="card">
       <h2 style="margin:0 0 8px; font-size: clamp(16px, 2.8vw, 18px); font-weight:600; color:#111;">Tablas de datos</h2>
-
       <div class="table-wrap">
         <table class="table">
-          <tr><th class="table-title" colspan="13">Circulación por vías establecidas</th></tr>
-          <tr>
-            <th>Rango etario</th>
-            <th>Jue 07-08 10:00</th>
-            <th>Jue 07-08 14:30</th>
-            <th>Vie 08-08 10:00</th>
-            <th>Vie 08-08 14:30</th>
-            <th>Sáb 09-08 10:00</th>
-            <th>Sáb 09-08 14:30</th>
-            <th class="num">Total</th>
-            <th class="num">%</th>
-            <th class="num">Promedio rango</th>
-            <th></th>
-            <th class="num">Promedio mañana</th>
-            <th class="num">Promedio tarde</th>
-          </tr>
-          <tr><td>0-5 años</td><td class="num">2</td><td class="num">11</td><td class="num">4</td><td class="num">9</td><td class="num">10</td><td class="num">4</td><td class="num">40</td><td class="num">3.18%</td><td class="num">7</td><td></td><td class="num">5</td><td class="num">8</td></tr>
-          <tr><td>6-18 años</td><td class="num">3</td><td class="num">22</td><td class="num">4</td><td class="num">36</td><td class="num">21</td><td class="num">0</td><td class="num">86</td><td class="num">6.83%</td><td class="num">14</td><td></td><td class="num">9</td><td class="num">19</td></tr>
-          <tr><td>19-30 años</td><td class="num">41</td><td class="num">108</td><td class="num">35</td><td class="num">223</td><td class="num">16</td><td class="num">20</td><td class="num">443</td><td class="num">35.19%</td><td class="num">74</td><td></td><td class="num">31</td><td class="num">117</td></tr>
-          <tr><td>31-60 años</td><td class="num">25</td><td class="num">132</td><td class="num">51</td><td class="num">173</td><td class="num">28</td><td class="num">30</td><td class="num">439</td><td class="num">34.87%</td><td class="num">73</td><td></td><td class="num">35</td><td class="num">112</td></tr>
-          <tr><td>61-90 años</td><td class="num">30</td><td class="num">39</td><td class="num">28</td><td class="num">80</td><td class="num">32</td><td class="num">42</td><td class="num">251</td><td class="num">19.94%</td><td class="num">42</td><td></td><td class="num">30</td><td class="num">54</td></tr>
-          <tr><td>Promedio día</td><td class="num">20</td><td class="num">62</td><td class="num">24</td><td class="num">104</td><td class="num">21</td><td class="num">19</td><td class="num"></td><td class="num"></td><td class="num"></td><td></td><td class="num"></td><td class="num"></td></tr>
+          <thead>
+            <tr><th class="table-title" colspan="13">Circulación por vías establecidas</th></tr>
+            <tr>
+              <th>Rango etario</th>
+              <th>Jue 07-08 10:00</th>
+              <th>Jue 07-08 14:30</th>
+              <th>Vie 08-08 10:00</th>
+              <th>Vie 08-08 14:30</th>
+              <th>Sáb 09-08 10:00</th>
+              <th>Sáb 09-08 14:30</th>
+              <th class="num">Total</th>
+              <th class="num">%</th>
+              <th class="num">Promedio rango</th>
+              <th></th>
+              <th class="num">Promedio mañana</th>
+              <th class="num">Promedio tarde</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>0-5 años</td><td class="num">2</td><td class="num">11</td><td class="num">4</td><td class="num">9</td><td class="num">10</td><td class="num">4</td><td class="num">40</td><td class="num">3.18%</td><td class="num">7</td><td></td><td class="num">5</td><td class="num">8</td></tr>
+            <tr><td>6-18 años</td><td class="num">3</td><td class="num">22</td><td class="num">4</td><td class="num">36</td><td class="num">21</td><td class="num">0</td><td class="num">86</td><td class="num">6.83%</td><td class="num">14</td><td></td><td class="num">9</td><td class="num">19</td></tr>
+            <tr><td>19-30 años</td><td class="num">41</td><td class="num">108</td><td class="num">35</td><td class="num">223</td><td class="num">16</td><td class="num">20</td><td class="num">443</td><td class="num">35.19%</td><td class="num">74</td><td></td><td class="num">31</td><td class="num">117</td></tr>
+            <tr><td>31-60 años</td><td class="num">25</td><td class="num">132</td><td class="num">51</td><td class="num">173</td><td class="num">28</td><td class="num">30</td><td class="num">439</td><td class="num">34.87%</td><td class="num">73</td><td></td><td class="num">35</td><td class="num">112</td></tr>
+            <tr><td>61-90 años</td><td class="num">30</td><td class="num">39</td><td class="num">28</td><td class="num">80</td><td class="num">32</td><td class="num">42</td><td class="num">251</td><td class="num">19.94%</td><td class="num">42</td><td></td><td class="num">30</td><td class="num">54</td></tr>
+            <tr><td>Promedio día</td><td class="num">20</td><td class="num">62</td><td class="num">24</td><td class="num">104</td><td class="num">21</td><td class="num">19</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          </tbody>
         </table>
       </div>
-
       <div class="table-wrap" style="margin-top:12px">
         <table class="table">
-          <tr><th class="table-title" colspan="13">Circulación por vías informales</th></tr>
-          <tr>
-            <th>Rango etario</th>
-            <th>Jue 07-08 10:00</th>
-            <th>Jue 07-08 14:30</th>
-            <th>Vie 08-08 10:00</th>
-            <th>Vie 08-08 14:30</th>
-            <th>Sáb 09-08 10:00</th>
-            <th>Sáb 09-08 14:30</th>
-            <th class="num">Total</th>
-            <th class="num">%</th>
-            <th class="num">Promedio rango</th>
-            <th></th>
-            <th class="num">Promedio mañana</th>
-            <th class="num">Promedio tarde</th>
-          </tr>
-          <tr><td>0-5 años</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">2</td><td class="num">3</td><td class="num">5</td><td class="num">8.33%</td><td class="num">1</td><td></td><td class="num">1</td><td class="num">1</td></tr>
-          <tr><td>6-18 años</td><td class="num">0</td><td class="num">1</td><td class="num">0</td><td class="num">4</td><td class="num">0</td><td class="num">5</td><td class="num">10</td><td class="num">16.67%</td><td class="num">2</td><td></td><td class="num">0</td><td class="num">3</td></tr>
-          <tr><td>19-30 años</td><td class="num">3</td><td class="num">2</td><td class="num">2</td><td class="num">4</td><td class="num">1</td><td class="num">1</td><td class="num">13</td><td class="num">21.67%</td><td class="num">2</td><td></td><td class="num">2</td><td class="num">2</td></tr>
-          <tr><td>31-60 años</td><td class="num">6</td><td class="num">3</td><td class="num">2</td><td class="num">1</td><td class="num">9</td><td class="num">2</td><td class="num">23</td><td class="num">38.33%</td><td class="num">4</td><td></td><td class="num">6</td><td class="num">2</td></tr>
-          <tr><td>61-90 años</td><td class="num">0</td><td class="num">1</td><td class="num">3</td><td class="num">4</td><td class="num">0</td><td class="num">1</td><td class="num">9</td><td class="num">15.00%</td><td class="num">2</td><td></td><td class="num">1</td><td class="num">2</td></tr>
-          <tr><td>Promedio día</td><td class="num">2</td><td class="num">1</td><td class="num">1</td><td class="num">3</td><td class="num">2</td><td class="num">2</td><td class="num"></td><td class="num"></td><td class="num"></td><td></td><td class="num"></td><td class="num"></td></tr>
+          <thead>
+            <tr><th class="table-title" colspan="13">Circulación por vías informales</th></tr>
+            <tr>
+              <th>Rango etario</th>
+              <th>Jue 07-08 10:00</th>
+              <th>Jue 07-08 14:30</th>
+              <th>Vie 08-08 10:00</th>
+              <th>Vie 08-08 14:30</th>
+              <th>Sáb 09-08 10:00</th>
+              <th>Sáb 09-08 14:30</th>
+              <th class="num">Total</th>
+              <th class="num">%</th>
+              <th class="num">Promedio rango</th>
+              <th></th>
+              <th class="num">Promedio mañana</th>
+              <th class="num">Promedio tarde</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>0-5 años</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">2</td><td class="num">3</td><td class="num">5</td><td class="num">8.33%</td><td class="num">1</td><td></td><td class="num">1</td><td class="num">1</td></tr>
+            <tr><td>6-18 años</td><td class="num">0</td><td class="num">1</td><td class="num">0</td><td class="num">4</td><td class="num">0</td><td class="num">5</td><td class="num">10</td><td class="num">16.67%</td><td class="num">2</td><td></td><td class="num">0</td><td class="num">3</td></tr>
+            <tr><td>19-30 años</td><td class="num">3</td><td class="num">2</td><td class="num">2</td><td class="num">4</td><td class="num">1</td><td class="num">1</td><td class="num">13</td><td class="num">21.67%</td><td class="num">2</td><td></td><td class="num">2</td><td class="num">2</td></tr>
+            <tr><td>31-60 años</td><td class="num">6</td><td class="num">3</td><td class="num">2</td><td class="num">1</td><td class="num">9</td><td class="num">2</td><td class="num">23</td><td class="num">38.33%</td><td class="num">4</td><td></td><td class="num">6</td><td class="num">2</td></tr>
+            <tr><td>61-90 años</td><td class="num">0</td><td class="num">1</td><td class="num">3</td><td class="num">4</td><td class="num">0</td><td class="num">1</td><td class="num">9</td><td class="num">15.00%</td><td class="num">2</td><td></td><td class="num">1</td><td class="num">2</td></tr>
+            <tr><td>Promedio día</td><td class="num">2</td><td class="num">1</td><td class="num">1</td><td class="num">3</td><td class="num">2</td><td class="num">2</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          </tbody>
         </table>
       </div>
-
       <div class="table-wrap" style="margin-top:12px">
         <table class="table">
-          <tr><th class="table-title" colspan="13">Total en ambas vías</th></tr>
-          <tr>
-            <th>Rango etario</th>
-            <th>Jue 07-08 10:00</th>
-            <th>Jue 07-08 14:30</th>
-            <th>Vie 08-08 10:00</th>
-            <th>Vie 08-08 14:30</th>
-            <th>Sáb 09-08 10:00</th>
-            <th>Sáb 09-08 14:30</th>
-            <th class="num">Total</th>
-            <th class="num">%</th>
-            <th class="num">Promedio rango</th>
-            <th></th>
-            <th class="num">Promedio mañana</th>
-            <th class="num">Promedio tarde</th>
-          </tr>
-          <tr><td>0-5 años</td><td class="num">2</td><td class="num">11</td><td class="num">4</td><td class="num">9</td><td class="num">12</td><td class="num">7</td><td class="num">45</td><td class="num">3.41%</td><td class="num">8</td><td></td><td class="num">6</td><td class="num">9</td></tr>
-          <tr><td>6-18 años</td><td class="num">3</td><td class="num">23</td><td class="num">4</td><td class="num">40</td><td class="num">21</td><td class="num">5</td><td class="num">96</td><td class="num">7.28%</td><td class="num">16</td><td></td><td class="num">9</td><td class="num">23</td></tr>
-          <tr><td>19-30 años</td><td class="num">44</td><td class="num">110</td><td class="num">37</td><td class="num">227</td><td class="num">17</td><td class="num">21</td><td class="num">456</td><td class="num">34.57%</td><td class="num">76</td><td></td><td class="num">33</td><td class="num">119</td></tr>
-          <tr><td>31-60 años</td><td class="num">31</td><td class="num">135</td><td class="num">53</td><td class="num">174</td><td class="num">37</td><td class="num">32</td><td class="num">462</td><td class="num">35.03%</td><td class="num">77</td><td></td><td class="num">40</td><td class="num">114</td></tr>
-          <tr><td>61-90 años</td><td class="num">30</td><td class="num">40</td><td class="num">31</td><td class="num">84</td><td class="num">32</td><td class="num">43</td><td class="num">260</td><td class="num">19.71%</td><td class="num">43</td><td></td><td class="num">31</td><td class="num">56</td></tr>
-          <tr><td>Promedio día</td><td class="num">22</td><td class="num">64</td><td class="num">26</td><td class="num">107</td><td class="num">24</td><td class="num">22</td><td class="num"></td><td class="num"></td><td class="num"></td><td></td><td class="num"></td><td class="num"></td></tr>
+          <thead>
+            <tr><th class="table-title" colspan="13">Total en ambas vías</th></tr>
+            <tr>
+              <th>Rango etario</th>
+              <th>Jue 07-08 10:00</th>
+              <th>Jue 07-08 14:30</th>
+              <th>Vie 08-08 10:00</th>
+              <th>Vie 08-08 14:30</th>
+              <th>Sáb 09-08 10:00</th>
+              <th>Sáb 09-08 14:30</th>
+              <th class="num">Total</th>
+              <th class="num">%</th>
+              <th class="num">Promedio rango</th>
+              <th></th>
+              <th class="num">Promedio mañana</th>
+              <th class="num">Promedio tarde</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>0-5 años</td><td class="num">2</td><td class="num">11</td><td class="num">4</td><td class="num">9</td><td class="num">12</td><td class="num">7</td><td class="num">45</td><td class="num">3.41%</td><td class="num">8</td><td></td><td class="num">6</td><td class="num">9</td></tr>
+            <tr><td>6-18 años</td><td class="num">3</td><td class="num">23</td><td class="num">4</td><td class="num">40</td><td class="num">21</td><td class="num">5</td><td class="num">96</td><td class="num">7.28%</td><td class="num">16</td><td></td><td class="num">9</td><td class="num">23</td></tr>
+            <tr><td>19-30 años</td><td class="num">44</td><td class="num">110</td><td class="num">37</td><td class="num">227</td><td class="num">17</td><td class="num">21</td><td class="num">456</td><td class="num">34.57%</td><td class="num">76</td><td></td><td class="num">33</td><td class="num">119</td></tr>
+            <tr><td>31-60 años</td><td class="num">31</td><td class="num">135</td><td class="num">53</td><td class="num">174</td><td class="num">37</td><td class="num">32</td><td class="num">462</td><td class="num">35.03%</td><td class="num">77</td><td></td><td class="num">40</td><td class="num">114</td></tr>
+            <tr><td>61-90 años</td><td class="num">30</td><td class="num">40</td><td class="num">31</td><td class="num">84</td><td class="num">32</td><td class="num">43</td><td class="num">260</td><td class="num">19.71%</td><td class="num">43</td><td></td><td class="num">31</td><td class="num">56</td></tr>
+            <tr><td>Promedio día</td><td class="num">22</td><td class="num">64</td><td class="num">26</td><td class="num">107</td><td class="num">24</td><td class="num">22</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          </tbody>
         </table>
       </div>
     </section>
 
-    <!-- Botones de descarga -->
+    <!-- Botones para descargas -->
     <section class="controls" aria-label="Descargas de gráficos">
-      <a class="btn" href="grafico-circulacion-radial.jpg" download>Descargar gráfico radial</a>
-      <a class="btn" href="grafico-circulacion-caminos.jpg" download>Descargar gráfico divergente</a>
-      <a class="btn" href="grafico-circulacion-heatmap.jpg" download>Descargar heatmap</a>
+      <a class="btn" href="grafico-radial.jpg" download>Descargar gráfico radial</a>
+      <a class="btn" href="grafico-divergente.jpg" download>Descargar gráfico divergente</a>
+      <a class="btn" href="grafico-heatmap.jpg" download>Descargar heatmap</a>
     </section>
   </main>
 
   <footer>
     Lunes 25 de Agosto de 2025 | Taller de ideación y creatividad | Sección 1
     <div>
-    Código HTML publicado con <a href="https://github.com/antomarinooo" target="_blank" rel="noopener">@antomarinoo en github</a>
+      Código HTML publicado con <a href="https://github.com/antomarinooo" target="_blank" rel="noopener">@antomarinoo en github</a>
     </div>
   </footer>
 </body>
